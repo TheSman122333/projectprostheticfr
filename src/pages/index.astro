@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="CMJ - Project Prosthetic">
+	<h1>All about Project Prosthetic!</h1>
+	<img src="/images/logo.png" class="float-img">
+	<p>Topic introduction:</p>
+	<p>
+		Every amputee has a story, one that is unique to them. Despite this, they all have one thing in common, their limitations. Sometimes, their future is robbed because of their amputation. Of course, this isn’t always the case. In some cases, they can still chase their dreams, sometimes the amputation doesn’t affect them as much. Still, there is still struggle. 
+	</p>
+	<p>
+		Prosthetics are an essential tool for people who have lost their limbs. It gives people a chance to live a regular life. For example, an amputated leg can prevent you from engaging in any physical activity, such as walking, hiking, biking, even going outside and brushing your teeth is hard. With a prosthetic, life becomes easier, those former tasks aren’t out of your range of capability. These tools give amputees an opportunity to go to events and leave their house comfortably, allowing them the chance to connect with other people.
+	</p>
+	<p>
+		Despite the importance of prosthetics, the demand for them isn’t being met. According to South Dakota State University, out of 40 million people only 2 million of them have prosthetics. The reason for this is caused by low funding and high costs, which is negatively impacting amputees who need these prosthetics to live a comfortable life. This can be seen in war torn countries, as they have high demands and less resources to meet those demands. 
+	</p>
+	<a href="/page/1" class="next-button">Start Reading</a>
+	<p> Hit start reading to begin... </p>
+	</div>
+</Layout>
+
+<style>
+	h1 {
+		color: rgb(var(--brun));
+	}
+	.float-img {
+		float: left;
+		margin: 0 15px 10px 0;
+		border-radius:5%;
+		height:50vh;
+	} 
+	.navigation {
+		margin-top: 2rem;
+		text-align: right;
+	}
+	.next-button {
+		display: inline-block;
+		padding: 0.5rem 1rem;
+		background-color: rgb(var(--red));
+		color: white;
+		text-decoration: none;
+		border-radius: 4px;
+	}
+	.next-button:hover {
+		background-color: rgb(var(--brun));
+	}
+</style>

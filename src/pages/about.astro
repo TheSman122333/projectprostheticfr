@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About Us - Wage Gap">
+	<h1>About Us</h1>
+	<img src="/images/teampic.png" alt="Our team" />
+	<p>We are passionate and dedicated to bring easy learning and equality to everyone.</p>
+	<h2>Our Team</h2>
+	<div class="team-grid">
+		<div class="team-member">
+			<img src="/images/IMG-20250409-WA0001.jpg" alt="Team Member 1" />
+			<h2>Sriman Aryasomayajula</h2>
+			<p>I first heard about the issue of the wage gap by race and gender in my statistics class. It was surprising to learn that even though people had the same qualifications and did the same amount of work, they were often paid differently just because of their race or gender. This made me really curious and I wanted to know more about why this was happening.
+			My interest grew even more when I talked to my parents about it. They told me a story from their office where two employees, one man and one woman, were both applying for a promotion. Both had similar experience and skills, but when it came to salary, the man asked for $100k and got it, while the woman only asked for $80k because she thought that was all she could get. Hearing about this unfairness made me want to do something about it.
+			I was lucky to find a group of friends who also cared about this issue. Together, we worked on a project to raise awareness about wage disparities and to advocate for fair pay. We hope our efforts will inspire others to take action and help create a fairer society. I’m grateful for the chance to be part of this important cause and am committed to fighting for wage equality for everyone.
+			</p>
+		</div>
+		<div class="team-member">
+			<img src="/images/HannahHeadshot.jpg" alt="Team Member 2" />
+			<h2>Hannah Mathew</h2>
+			<p>I first heard about the issue of wage gap by race and gender in my social studies class. It was shocking to hear how although people were doing the same amount of work and had the same qualifications, certain people were getting lower wages than others, solely due to their race and/or gender, and I wanted to make a difference. My passion for this cause strengthened when I asked my dad about this issue, and he told me about an instance where two male candidates and a female candidate applied for a position with a normal salary range of 95k-120k; the male candidates negotiated for a salary of 130k, while the female candidate only expected 85k. Hearing this really strengthened my desire to do something for this cause. I’m beyond grateful that I got the chance to work with like-minded individuals. I truly hope that what we’ve created will raise awareness about and inspire people to take action on an injustice which affects several individuals across the country. </p>
+		</div>
+		<div class="team-member">
+			<img src="/images/JohnHeadshot.png" alt="Team Member 3" />
+			<h2>John Spencer</h2>
+			<p>I knew about wage gap and the gap between race and between gender but not that much. When I first went to the CMJ summer program I saw that I could choose to work and learn more about wage gap and I thought it was an interesting topic. The more and more I researched about wage gap the more and more that this problem was bigger than I thought and it was not far and that made me want to make a difference. The CMJ summer program was an amazing opportunity for me. I learned so much more about my topic wage gap and how to work with a team better and also I never felt not safe. I always felt welcome.
+			</p>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	h1{
+		color: rgb(var(--red));
+	}
+	h2{
+		color: rgb(var(--brun));
+	}
+	h3{
+		color: rgb(var(--accent));
+	}
+	.team-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 2rem;
+		margin-top: 2rem;
+	}
+	.team-member {
+		text-align: center;
+	}
+	.team-member img {
+		border-radius: 50%;
+		margin-bottom: 1rem;
+	}
+	.team-member h3 {
+		margin: 0;
+		color: rgb(var(--accent));
+	}
+	.team-member p {
+		margin: 0.5rem 0 0;
+		font-style: italic;
+	}
+</style>

@@ -1,0 +1,241 @@
+---
+import confetti from 'canvas-confetti';
+
+interface Question {
+  question: string;
+  options: string[];
+  correctAnswer: number;
+}
+
+interface ShortAnswerQuestion {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  questions: Question[];
+  shortAnswerQuestions: ShortAnswerQuestion[];
+}
+
+const { questions, shortAnswerQuestions } = Astro.props;
+---
+
+<div class="quiz-container">
+  <div class="quiz">
+    {questions.length > 0 && (
+      <div class="multiple-choice">
+        <h3>Multiple Choice Questions</h3>
+        <h4>Answer all questions to proceed.</h4>
+        {questions.map((q, index) => (
+          <div class="question" data-correct={q.correctAnswer}>
+            <h4>Question {index + 1}</h4>
+            <p>{q.question}</p>
+            <div class="options">
+              {q.options.map((option, optionIndex) => (
+                <label>
+                  <input type="radio" name={`question-${index}`} value={optionIndex} required />
+                  {option}
+                </label>
+              ))}
+            </div>
+            <div class="error-message" id={`error-${index}`}>Please answer this question before submitting.</div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {shortAnswerQuestions.length > 0 && (
+      <div class="short-answer">
+        <h3>Short Answer Questions</h3>
+        {shortAnswerQuestions.map((q, index) => (
+          <div class="question">
+            <h4>Question {index + 1}</h4>
+            <p>{q.question}</p>
+            <textarea 
+              name={`short-answer-${index}`} 
+              rows="4" 
+              cols="50"
+              required={shortAnswerQuestions.length > 0}
+            ></textarea>
+            <div class="error-message" id={`error-short-${index}`}>Please provide an answer before submitting.</div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {(questions.length > 0 || shortAnswerQuestions.length > 0) && (
+      <button id="submit-quiz">Submit Quiz</button>
+    )}
+    <div id="quiz-results"></div>
+  </div>
+</div>
+
+<script>
+  import confetti from 'canvas-confetti';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const quizForm = document.querySelector('.quiz');
+    if (quizForm) {
+      const submitButton = document.getElementById('submit-quiz');
+      const resultsDiv = document.getElementById('quiz-results');
+
+      if (submitButton && resultsDiv) {
+        submitButton.addEventListener('click', () => {
+          const multipleChoiceQuestions = quizForm.querySelectorAll('.multiple-choice .question');
+          const shortAnswerQuestions = quizForm.querySelectorAll('.short-answer .question');
+          let isValid = true;
+
+          // Validate multiple choice questions
+          multipleChoiceQuestions.forEach((question, index) => {
+            const selectedOption = question.querySelector(`input[name="question-${index}"]:checked`);
+            const errorMessage = document.getElementById(`error-${index}`);
+            if (!selectedOption) {
+              isValid = false;
+              errorMessage.style.display = 'block';
+              question.classList.add('error');
+            } else {
+              errorMessage.style.display = 'none';
+              question.classList.remove('error');
+            }
+          });
+
+          // Validate short answer questions
+          shortAnswerQuestions.forEach((question, index) => {
+            const textarea = question.querySelector(`textarea[name="short-answer-${index}"]`);
+            const errorMessage = document.getElementById(`error-short-${index}`);
+            if (textarea && !textarea.value.trim()) {
+              isValid = false;
+              errorMessage.style.display = 'block';
+              question.classList.add('error');
+            } else if (textarea) {
+              errorMessage.style.display = 'none';
+              question.classList.remove('error');
+            }
+          });
+
+          if (!isValid) {
+            resultsDiv.innerHTML = '<p class="error-summary">Please answer all questions before submitting.</p>';
+            return;
+          }
+
+          let score = 0;
+          let totalQuestions = multipleChoiceQuestions.length;
+
+          multipleChoiceQuestions.forEach((question, index) => {
+            const selectedOption = question.querySelector(`input[name="question-${index}"]:checked`);
+            if (selectedOption) {
+              const userAnswer = parseInt(selectedOption.value);
+              const correctAnswer = parseInt(question.dataset.correct);
+              if (userAnswer === correctAnswer) {
+                score++;
+              }
+            }
+          });
+
+          resultsDiv.innerHTML = `
+            <h3>Quiz Results</h3>
+            <p>You scored ${score} out of ${totalQuestions} on the multiple choice questions!</p>
+            <p>You will automatically be redirected.</p>
+          `;
+
+          if (score === totalQuestions && totalQuestions > 0) {
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 }
+            });
+          }
+          setTimeout(() => {
+            const pathSegments = window.location.pathname.split('/').filter(Boolean);
+            const currentPage = parseInt(pathSegments[pathSegments.length - 1]) || 1;
+            const nextPage = currentPage + 1;
+            console.log(nextPage);
+            window.location.href = `/page/${nextPage}`;
+          }, 2000);
+        });
+      }
+    }
+  });
+</script>
+
+<style>
+  .quiz {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  .question {
+    margin-bottom: 1rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 4px;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  label:hover {
+    background-color: #f5f5f5;
+  }
+  button {
+    background-color: rgb(var(--brun));
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  button:hover {
+    background-color: rgb(var(--brun-light));
+  }
+  textarea {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  h3 {
+    margin-bottom: 1rem;
+    color: rgb(var(--accent-dark));
+  }
+  h4 {
+    margin-top: 0;
+    color: rgb(var(--red));
+  }
+  #quiz-results {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 4px;
+    display: none;
+  }
+  #quiz-results:not(:empty) {
+    display: block;
+  }
+    .error-message {
+    color: #ff4444;
+    font-size: 0.9em;
+    margin-top: 0.5rem;
+    display: none;
+  }
+
+  .error-summary {
+    color: #ff4444;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  p {
+    margin: 0.5rem 0;
+  }
+</style>

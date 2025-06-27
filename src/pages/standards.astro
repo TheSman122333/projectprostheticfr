@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Standards - Wage Gap">
+	<h2>Math Standards:</h2>
+			<div class="content">
+				<h3>
+					S-ID 2. Use statistics appropriate to the shape of the data distribution to compare center (median, mean) and spread (interquartile range, standard deviation) of two or more different data sets
+				</h3>
+				<h4 style="margin-left:50px">
+					This standard will be used by looking at the median salaries of workers and comparing salaries of different ethnicities to the median and looking at the percentage differences between the respective median salaries of each ethnic group and the median salary. Additionally, we will be finding interquartile range and also comparing MAD (Median Absolute Deviation), the average distance the values are from the median, for each race and gender.
+				</h4>
+				<h3>
+					S-ID 3. Interpret differences in shape, center, and spread in the context of the data sets, accounting for possible effects of extreme data points (outliers).
+				</h3>
+				<h4 style="margin-left:50px">
+					This standard will be used by accounting for possible effects of outliers by finding the median of the data points instead of the mean to avoid a potential increase or decrease of the reference point due to extremely high or extremely low salaries. We will also be using MAD as a reference point to see how much higher or lower median salaries of different ethnicities are than the median (and if the differences are higher or lower than the MAD).
+				</h4>
+				<h3>
+					Standards for Mathematical Practice 8:
+				</h3>
+				<h4 style="margin-left:50px">
+					Look for and express regularity in repeated reasoning. This standard will be used by looking at the sum of workers’ salaries over the years using the sum of sequence formula to demonstrate the difference between the salaries in the long run. 
+				</h4>
+				<!---- <img src="/images/statpage2.png" alt="Gender and Income inequality timeline" class="float-img"/> -----!>
+			</div>
+</Layout>
+
+<style>
+	h1{
+		color: rgb(var(--red));
+	}
+	h2{
+		color: rgb(var(--brun));
+	}
+	h3{
+		color: rgb(var(--accent-dark));
+	}
+	h4{
+		color: rgb(var(--brun-light));
+	}
+	.content {
+		margin-top: 1rem;
+		line-height: 1.6;
+	}
+	.float-img {
+		float: left;
+		margin: 0 15px 10px 0;
+	} 
+	.content {
+		overflow: hidden; 
+	}
+	.navigation {
+		margin-top: 2rem;
+		display: flex;
+		justify-content: space-between;
+	}
+	.nav-button {
+		padding: 0.5rem 1rem;
+		background-color: rgb(var(--red));
+		color: white;
+		text-decoration: none;
+		border-radius: 4px;
+	}
+	.nav-button:hover {
+		background-color: rgb(var(--brun));
+	}
+	.prev {
+		margin-right: auto;
+	}
+	.next {
+		margin-left: auto;
+	}
+	.flashcard-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		justify-content: center;
+		margin-top: 2rem;
+	}
+	.quiz-calculator-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		margin-top: 2rem;
+	}
+	.quiz-section, .calculator-section {
+		flex: 1;
+		min-width: 300px;
+	}
+	.calculator-container {
+		margin-top: 1rem;
+		width: 100%;
+	}
+	@media (max-width: 768px) {
+		.quiz-calculator-container {
+			flex-direction: column;
+		}
+	}
+</style>

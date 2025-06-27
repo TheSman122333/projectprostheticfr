@@ -1,0 +1,117 @@
+---
+---
+<div class="accessibility-controls">
+  <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+    <span class="icon">⚙️</span>
+    Accessibility
+  </button>
+  <div class="dropdown-menu">
+    <button id="invert-colors" class="dropdown-item">
+      <span class="icon">🎨</span>
+      Invert Colors
+    </button>
+  </div>
+</div>
+
+<script>
+  const toggle = document.querySelector('.dropdown-toggle');
+  const menu = document.querySelector('.dropdown-menu');
+  const invertButton = document.getElementById('invert-colors');
+
+  // Check localStorage on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const isInverted = localStorage.getItem('colorInverted') === 'true';
+    if (isInverted) {
+      document.body.classList.add('inverted');
+    }
+  });
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', (!expanded).toString());
+    menu?.classList.toggle('show');
+  });
+
+  invertButton?.addEventListener('click', () => {
+    document.body.classList.toggle('inverted');
+    // Store the state in localStorage
+    const isInverted = document.body.classList.contains('inverted');
+    localStorage.setItem('colorInverted', isInverted.toString());
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.accessibility-controls')) {
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu?.classList.remove('show');
+    }
+  });
+</script>
+
+<style>
+  .accessibility-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
+
+  .dropdown-toggle {
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-toggle:hover {
+    background: #333;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 8px;
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    padding: 8px;
+    min-width: 200px;
+    display: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .dropdown-item {
+    background: transparent;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-item:hover {
+    background: #333;
+  }
+
+  .icon {
+    font-size: 1.2em;
+  }
+</style>

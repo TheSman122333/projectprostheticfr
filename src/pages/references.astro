@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="References - Wage Gap">
+	<h2>References</h2>
+			<div class="content">
+				<img src="/images/refs.png" alt={`Dinner (scene 1)`} class="float-img" />
+			</div>
+</Layout>
+
+<style>
+	h1{
+		color: rgb(var(--red));
+	}
+	h2{
+		color: rgb(var(--brun));
+	}
+	h3{
+		color: rgb(var(--accent-dark));
+	}
+	h4{
+		color: rgb(var(--brun-light));
+	}
+	.content {
+		margin-top: 1rem;
+		line-height: 1.6;
+	}
+	.float-img {
+		float: left;
+		margin: 0 15px 10px 0;
+	} 
+	.content {
+		overflow: hidden;
+	}
+	.navigation {
+		margin-top: 2rem;
+		display: flex;
+		justify-content: space-between;
+	}
+	.nav-button {
+		padding: 0.5rem 1rem;
+		background-color: rgb(var(--red));
+		color: white;
+		text-decoration: none;
+		border-radius: 4px;
+	}
+	.nav-button:hover {
+		background-color: rgb(var(--brun));
+	}
+	.prev {
+		margin-right: auto;
+	}
+	.next {
+		margin-left: auto;
+	}
+	.flashcard-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		justify-content: center;
+		margin-top: 2rem;
+	}
+	.quiz-calculator-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		margin-top: 2rem;
+	}
+	.quiz-section, .calculator-section {
+		flex: 1;
+		min-width: 300px;
+	}
+	.calculator-container {
+		margin-top: 1rem;
+		width: 100%;
+	}
+	@media (max-width: 768px) {
+		.quiz-calculator-container {
+			flex-direction: column;
+		}
+	}
+</style>
