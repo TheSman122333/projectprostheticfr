@@ -1,101 +1,157 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Quiz from '../components/Quiz.astro';
+import CodeEditor from '../components/CodeEditor.astro';
 ---
 
-<Layout title="Standards - Wage Gap">
-	<h2>Math Standards:</h2>
-			<div class="content">
-				<h3>
-					S-ID 2. Use statistics appropriate to the shape of the data distribution to compare center (median, mean) and spread (interquartile range, standard deviation) of two or more different data sets
-				</h3>
-				<h4 style="margin-left:50px">
-					This standard will be used by looking at the median salaries of workers and comparing salaries of different ethnicities to the median and looking at the percentage differences between the respective median salaries of each ethnic group and the median salary. Additionally, we will be finding interquartile range and also comparing MAD (Median Absolute Deviation), the average distance the values are from the median, for each race and gender.
-				</h4>
-				<h3>
-					S-ID 3. Interpret differences in shape, center, and spread in the context of the data sets, accounting for possible effects of extreme data points (outliers).
-				</h3>
-				<h4 style="margin-left:50px">
-					This standard will be used by accounting for possible effects of outliers by finding the median of the data points instead of the mean to avoid a potential increase or decrease of the reference point due to extremely high or extremely low salaries. We will also be using MAD as a reference point to see how much higher or lower median salaries of different ethnicities are than the median (and if the differences are higher or lower than the MAD).
-				</h4>
-				<h3>
-					Standards for Mathematical Practice 8:
-				</h3>
-				<h4 style="margin-left:50px">
-					Look for and express regularity in repeated reasoning. This standard will be used by looking at the sum of workers’ salaries over the years using the sum of sequence formula to demonstrate the difference between the salaries in the long run. 
-				</h4>
-				<!---- <img src="/images/statpage2.png" alt="Gender and Income inequality timeline" class="float-img"/> -----!>
-			</div>
+<Layout title="Standards - Project Prosthetic">
+	<h1>Standards</h1>
+	<p>Here you'll find additional learning materials and tools to support your education journey.</p>
+	
+	<h2>Educational Standards</h2>
+	
+	<h3>Mathematics Standards (6th Grade)</h3>
+	<div class="standards-section">
+		<h4>6.RP. Ratios and Proportional Relationships</h4>
+		<p><strong>Standard:</strong> Understand ratio concepts and use ratio reasoning to solve problems.</p>
+		<p><strong>Application:</strong> This standard will be used by calculating the ratio between the amount of people who own prosthetics versus the total amount of amputees. Additionally, we will be analyzing gender disparity amongst amputees and accessibility in disadvantaged countries.</p>
+		
+		<h4>6.NS. The Number System</h4>
+		<p><strong>Standard:</strong> Apply and extend previous understanding of multiplication and division to divide fractions by fractions.</p>
+		<p><strong>Application:</strong> This standard was used by dividing large numbers to simplify ratios, such as calculating the number of girls versus boys who are amputees using multi-digit division.</p>
+		
+		<p><strong>Standard:</strong> Compute fluently with multi-digit numbers and find common factors and multiples.</p>
+		<p><strong>Application:</strong> This standard was used by working with real-world data involving millions, and to simplify ratios by finding the greatest common factor.</p>
+		
+		<p><strong>Standard:</strong> Apply and extend previous understandings of numbers to the system of rational numbers.</p>
+		<p><strong>Application:</strong> This standard was used by converting ratios into fractions and decimals, helping students to reason with rational numbers and understand small values, such as the proportion of girls among all amputees or the percentage of people with access to prosthetics.</p>
+	</div>
+
+	<h3>Computer Science Standards</h3>
+	<div class="standards-section">
+		<h4>2-AP-12: Control Structures</h4>
+		<p><strong>Standard:</strong> Design and iteratively develop programs that combine control structures, including nested loops and compound conditionals.</p>
+		<p><strong>Subconcept:</strong> Control</p>
+		<p><strong>Practices:</strong> 5.1 – Creating Computational Artifacts, 5.2 – Iteratively Improving a Computational Artifact</p>
+		
+		<p><strong>Learning Expectation:</strong> Students should be able to identify and manipulate control structures within a program, such as for and while loops, as well as if statements with compound conditions (e.g., using and, or, not). They should demonstrate the ability to trace and modify these structures effectively.</p>
+		
+		<p><strong>Students should be able to:</strong></p>
+		<ul>
+			<li>Locate existing loops and determine their purpose</li>
+			<li>Understand the loop's entry and exit conditions</li>
+			<li>Identify the variables or values that control the flow and duration of the loop</li>
+		</ul>
+		
+		<p><strong>Application:</strong> We use it to modify loop parameters or conditions to change behavior (e.g., increasing a threshold from 300 to 700 in a while loop to alter its stopping point).</p>
+	</div>
+	
+
+	<h2>References</h2>
+	<div class="references">
+		<h3>Educational Standards Documents</h3>
+		<ul>
+			<li><a href="https://www.michigan.gov/-/media/Project/Websites/mde/Year/2019/05/17/CompSci_Standards_Accessible_Final.pdf?rev=49b7350fc0694944a0e9f67dcb61162a" target="_blank">Michigan Computer Science Standards</a></li>
+			<li><a href="https://www.michigan.gov/-/media/Project/Websites/mde/Literacy/Content-Standards/Math_Standards.pdf?rev=1e793e2b1e314e4fa1abc754251b5dc9" target="_blank">Michigan Mathematics Standards (Page 44)</a></li>
+		</ul>
+	</div>
 </Layout>
 
 <style>
-	h1{
-		color: rgb(var(--red));
+	h1, h2, h3, h4 {
+		color: rgb(var(--accent));
 	}
-	h2{
-		color: rgb(var(--brun));
+	
+	.standards-section {
+		background-color: #f8f9fa;
+		padding: 1.5rem;
+		border-radius: 8px;
+		margin-bottom: 2rem;
+		border-left: 4px solid rgb(var(--accent));
 	}
-	h3{
+	
+	.standards-section h4 {
+		margin-top: 0;
 		color: rgb(var(--accent-dark));
 	}
-	h4{
-		color: rgb(var(--brun-light));
+	
+	.standards-section p {
+		margin: 0.75rem 0;
+		color: rgba(0, 0, 0, 0.66);
 	}
-	.content {
-		margin-top: 1rem;
-		line-height: 1.6;
+	
+	.references {
+		background-color: #fff;
+		padding: 1.5rem;
+		border-radius: 8px;
+		border: 1px solid #e9ecef;
+		margin: 2rem 0;
 	}
-	.float-img {
-		float: left;
-		margin: 0 15px 10px 0;
-	} 
-	.content {
-		overflow: hidden; 
+	
+	.references h3 {
+		margin-top: 0;
+		color: rgb(var(--accent-dark));
 	}
-	.navigation {
-		margin-top: 2rem;
-		display: flex;
-		justify-content: space-between;
+	
+	ul {
+		list-style-type: none;
+		padding-left: 0;
+		color: rgba(0, 0, 0, 0.66);
 	}
-	.nav-button {
-		padding: 0.5rem 1rem;
-		background-color: rgb(var(--red));
-		color: white;
+	
+	li {
+		margin-bottom: 0.5rem;
+		padding-left: 1rem;
+		position: relative;
+		color: rgba(0, 0, 0, 0.66);
+	}
+	
+	li:before {
+		content: "•";
+		color: rgb(var(--accent));
+		font-weight: bold;
+		position: absolute;
+		left: 0;
+	}
+	
+	a {
+		color: rgb(var(--accent));
 		text-decoration: none;
-		border-radius: 4px;
 	}
-	.nav-button:hover {
-		background-color: rgb(var(--brun));
+	
+	a:hover {
+		text-decoration: underline;
 	}
-	.prev {
-		margin-right: auto;
-	}
-	.next {
-		margin-left: auto;
-	}
-	.flashcard-container {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
-		justify-content: center;
-		margin-top: 2rem;
-	}
-	.quiz-calculator-container {
+	
+	.book-list {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 2rem;
-		margin-top: 2rem;
-	}
-	.quiz-section, .calculator-section {
-		flex: 1;
-		min-width: 300px;
-	}
-	.calculator-container {
 		margin-top: 1rem;
-		width: 100%;
 	}
+	
+	.book {
+		text-align: center;
+	}
+	
+	.book img {
+		border-radius: 4px;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	}
+	
+	.book p {
+		margin-top: 0.5rem;
+		font-weight: bold;
+		color: rgba(0, 0, 0, 0.66);
+	}
+	
 	@media (max-width: 768px) {
-		.quiz-calculator-container {
-			flex-direction: column;
+		.standards-section {
+			padding: 1rem;
+		}
+		
+		.book-list {
+			justify-content: center;
 		}
 	}
 </style>

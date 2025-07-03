@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Flashcard from '../../components/Flashcard.astro';
 import Quiz from '../../components/Quiz.astro';
+import CodeEditor from '../../components/CodeEditor.astro';
 
 export function getStaticPaths() {
   return [
@@ -80,7 +81,7 @@ const shortAnswerQuestions = [
 ];
 ---
 
-<Layout title={`Page ${page} - Wage Gap`}>
+<Layout title={`Page ${page} - Project Prosthetic`}>
 	<h1>Page {page}</h1>
 
 	{pageNumber === 1 && (
@@ -99,6 +100,7 @@ const shortAnswerQuestions = [
 			</div>
 		</>
 	)}
+
 	{pageNumber === 2 && (
 		<>
 			<h2>The Bombing.</h2>
@@ -112,6 +114,7 @@ const shortAnswerQuestions = [
 			</div>
 		</>
 	)}
+
 	{pageNumber === 3 && (
 		<>
 			<h2>Going to College...</h2>
@@ -128,31 +131,67 @@ const shortAnswerQuestions = [
 			</div>
 		</>
 	)}
+
 	{pageNumber === 4 && (
+		<>
+			<h2>As I was doing research:</h2>
+			<div class="content">
+				<ul>
+					<li>The oldest prosthetic named the “Cairo toe” was dated back to 15 BC. This shows that even back then, people found ways to restore what was lost.</li>
+					<li>The number of amputees was around 60 million, in 2017. (hasn’t been calculated since then)</li>
+					<li>3 million people worldwide have arm amputations, and 2.4 million out of those are from disadvantaged countries.</li>
+					<li>2 million out of 40 million surveyed amputees, have prosthetics.</li>
+				</ul>
+			</div>
+			<div class="quiz-calculator-container">
+				<div class="quiz-section">
+					<Quiz questions={
+						[
+							{
+								question: "Calculate the ratio of the amount of people who can get prosthetics, if the amount of amputees is ~~60,000,000 worldwide (USE THE DATA ABOVE):",
+								options: ["25,000,000", "3,000,000", "3,333,334", "67,676,767"],
+								correctAnswer: 1
+							}
+						]
+					} shortAnswerQuestions={empty} />
+				</div>
+				<div class="calculator-section">
+					<h2>Desmos Calculator</h2>
+					<p>Use this embedded Desmos calculator for your mathematical needs!</p>
+					<div class="calculator-container">
+						<iframe src="https://www.desmos.com/calculator/scientific" width="100%" height="500" style="border: 1px solid #ccc" frameborder="0"></iframe>
+					</div>
+				</div>
+			</div>
+		</>
+	)}
+
+	{pageNumber === 5 && (
 		<>
 			<h2>Ayla wants to build a prosthetic...</h2>
 			<div class="content">
 				<p>
-				Ayla, with the help from her professor, created a very rudimentary prosthetic using EMG (ElectroMyography). It was her first prosthetic, it could pick up cups and mugs. Ayla put blood, sweat, and tears into building this prosthetic. Unfortunately, it took a lot of trial and error for Ayla to custom fit to my stub. It also took a long time, as Ayla had to model and 3D print it multiple times. Ayla then presented this prosthetic to me. She was unsure when she showed me the prosthetic and told me that there was a risk to trying it on.
+					Ayla, with the help from her professor, created a very rudimentary prosthetic using EMG (ElectroMyography, it amplifies electrical signals in the muscles, and lets it become interpretable for microcontrollers). It was her first prosthetic, and its capabilities extended to it picking up cups and mugs. Ayla worked hard as she created the prosthetic. Unfortunately, it took a lot of trial and error for Ayla to custom fit my stub, especially because Ayla had to model and 3D print it multiple times. Ayla then presented this prosthetic to me. She was unsure when she showed me the prosthetic, as it was her first time building one, and told me that there was a risk with trying it on.
 				</p>
 				<p>
 				<b>
 				CHOICE: Trust Ayla’s prosthetic? There is a small risk of nerve damage, if electricity flows back. She double checked the wires, multiple times, and got the ‘OK’ from the professor's friend…
 				</b>
 				</p>
-				<p><a href={`/page/6`}>Trust it?</a></p>
-				<p><a href={`/page/5`}>Don't try it?</a></p>
+				<p><a href={`/page/7`}>Trust it?</a></p>
+				<p><a href={`/page/6`}>Don't try it?</a></p>
 			</div>
 		</>
 	)}
-	{pageNumber === 6 && (
+
+	{pageNumber === 7 && (
 		<>
 			<h2>Trust it?</h2>
 			<div class="content">
 				<p>
 				After further research, Ayla and I noticed that there are a lot of countries and people that struggle from the lack of aid devices being distributed to those areas. For example, we saw a statistic made from South Dakota State University, they stated that out of 40 million people only two million of them have prosthetics.  As someone who has personally gone through this, this touched me deeply. So, we both made it our mission to start a company and solve this issue.
 				</p>
-				<p style="color:green">
+				<p style="color:#B9D9EB">
 				<b>
 				Me and Ayla founded Project Prosthetic  
 				</p>
@@ -161,7 +200,7 @@ const shortAnswerQuestions = [
 		</>
 	)}
 
-	{pageNumber === 5 && (
+	{pageNumber === 6 && (
 		<>
 			<h2>Not believing it...</h2>
 			<p>
@@ -170,395 +209,263 @@ const shortAnswerQuestions = [
 		</>
 	)}
 	
-	{pageNumber === 7 && (
+	{pageNumber === 8 && (
 		<>
 			<h2>Bad start...</h2>
 			<p>
 			Fahad and Ayla really were determined about this company. Unfortunately the company did not have a good start and did not get a lot of traction from people. After multiple other tries on starting up the company it still failed. Fahad and Ayla became really unmotivated to pick the company back up.
 			</p>
-			
 		</>
 	)}
-
-	{pageNumber === 8 && (
-		<>
-			<h2>The story continues...</h2>
-			<p>A few months have passed. Both Jin and Ana still work at the same place.</p>
-			<h3> Scene 3 </h3>
-			<img src="/images/jincallsana.png" alt={`Jin calls Ana`} class="float-img" />
-
-			<p style="margin-left:50px" class=>
-			One evening, Jin gets a notification on his phone regarding a promotion. Feeling elated upon the news, he contacts Ana to check if she received one as well. However, to both of their surprise, Ana says she did not receive one.
-			</p>
-			<h3 style="margin-top:200px"> Scene 4 </h3>
-			<img src="/images/promophone.png" alt={`Phone text`} class="float-img" />
-			<p style="margin-left:50px">
-			Later that week, both Jin and Ana received letters from the company which declared that they both got the job. They were both very excited to work at the company. However, their letters differed slightly when it came to their salaries.
-			</p>
-			<p style="margin-left:50px">
-			Jin: “I wonder why this is happening. Both of us have identical qualifications yet only I received the promotion.”
-			<br>
-			<br>
-			Ana: “Yeah, and I also work just as hard as you!”
-			</p>
-		</>
-	)}
-
 
 	{pageNumber === 9 && (
 		<>
-			<h2>The story continues...</h2>
-			<p>A few months have passed. Both Jin and Ana still work at the same place.</p>
-			<h3> Scene 5 </h3>
-			<img src="/images/research.png" alt={`Jin calls Ana`} class="float-img" />
-
-			<p>Ana and Jin also noticed a few other differences between their work as well as the new promotion that Jin received. Ana was often tasked with the grunt work-leftover clients that no one wanted to take on. However, Jin would always get the fun work and would be able to do what he wanted to. In addition to this, Ana was often met with low expectations and people didn't believe in her full potential, whereas Jin would have high expectations and would struggle with meeting them.</p>
+			<h2>More questions...</h2>
+			<div class="content">
+			</div>
+			<div class="quiz-calculator-container">
+				<div class="quiz-section">
+					<Quiz questions={
+						[
+							{
+								question: "If there are 60 million amputees in the world, and 24,000 are girls, what is the ratio of boys to girls that are amputees?",
+								options: ["59,976,000:24,000", "3,000,000:24,000", "59,976,000:21,000"],
+								correctAnswer: 0
+							}
+						]
+					} shortAnswerQuestions={empty} />
+				</div>
+				<div class="calculator-section">
+					<h2>Desmos Calculator</h2>
+					<p>Use this embedded Desmos calculator for your mathematical needs!</p>
+					<div class="calculator-container">
+						<iframe src="https://www.desmos.com/calculator/scientific" width="100%" height="500" style="border: 1px solid #ccc" frameborder="0"></iframe>
+					</div>
+				</div>
+			</div>
 		</>
 	)}
 
 	{pageNumber === 10 && (
 		<>
-			<h2>Data</h2>
-			<p>Ana and Jin both decide to dive deeper into the promotion situation and how race and gender might affect one’s ability to receive a promotion. Upon researching, they find from the Harvard Business Review that:
-				“Paradoxically, just when women are most likely to need sponsorship—as they shoot for the highest-level jobs—they may be least likely to get it. Women are still perceived as “risky” appointments for such roles by often male-dominated committees. In a study of top-performing CEOs, for instance, the women were nearly twice as likely as the men to have been hired from outside the company. That finding suggests that women are less likely to emerge as winners in their firms’ own CEO tournaments.”
-				“Men and women alike say they get valuable career advice from their mentors, but it’s mostly men who describe being sponsored”
-				“In 2008, 78% of men were actively mentored by a CEO or another senior executive, compared with 69% of women. More women than men had junior-level mentors: 7% of women were mentored by a nonmanager or a first-level manager, compared with 4% of men.”
-			</p>
-			<p>Race also has a large impact on disparities in wage.</p>
-			<img src="/images/data.png" alt={`Statpage 8`} class="float-img" />
-
-			<p>
-				(Earnings Disparities by Race and Ethnicity, n.d.)
-				In Michigan, where Jin and Ana live, the average for an Asian worker’s weekly earnings is $1,161, while that for a Hispanic/Latino person is at $744.78. 
-			</p>
+			<h2>Try again?</h2>
+			<div class="content">
+				<p>
+				<b>
+				CHOICE: After several setbacks, it seems like it's not going to work out. Should I walk away from the company, or give it another shot?
+				</b>
+				</p>
+				<p><a href={`/page/12`}>Push forward</a></p>
+				<p><a href={`/page/11`}>Give up.</a></p>
+			</div>
 		</>
 	)}
 
-		{pageNumber === 11 && (
+	{pageNumber === 11 && (
 		<>
-			<h2>Comparing numbers...</h2>
-			<img src="/images/research2.png" alt={`Statpage 8`} class="float-img" />
-			<p>
-				Ana: "So basically, what this research is saying is that women trying to get top jobs often don't get support from inside their company because they're seen as risky choices, which makes it harder for them to move up."
-				<br>
-				<br>
-				Jin: "And more successful female CEOs are more likely than male CEOs to be hired from outside their company, showing that women have fewer chances to get promoted from within."
-				<br>
-				<br>
-				Ana: “And gender is not the only factor that affects salary. In Michigan, where we live, the average for an Asian worker’s weekly earnings is $1,161, while that for a Hispanic/Latino person is at $744.78.”
-				<br>
-				<br>
-				Jin: “That means that the Asian worker earns $416.22 more than the Hispanic worker each week. This means that the Asian worker earns almost 22 thousand more than the Hispanic worker does each year.”
-				<br>
-				<br>
-				Ana: "Wow, this is really unfair: Men get more help advancing their careers (aka sponsorship) from mentors than women do, even though both men and women get advice about their careers from mentors. Also, Asian workers earn so much more than Hispanic workers do, just because of their race."
-				<br>
-				<br>
-				Jin: “This seems like a very big problem. Let’s meet tomorrow and do some more research on this issue.”
-			</p>
+			<h2>You gave up.</h2>
+			<div class="content">
+				<p>
+				I accepted that it wasn't going to work out. I walked away from the company, but I wasn’t ready to give up entirely. So, I ended up as a surgical assistant. It wasn’t my dream of neurosurgery, but being in that room, helping with life-changing procedures, felt like I was finally where I was meant to be.
+				</p>
+			</div>
 		</>
 	)}
 
-	
 	{pageNumber === 12 && (
 		<>
-			<h2>Scene 6</h2>
-			<img src="/images/coffee.png" alt={`Statpage 8`} class="float-img" />
-			<p>
-				One morning, Ana and Jin are having brunch together at a nearby restaurant. They talk about the issues that they are facing at work.
-				<br>
-				<br>
-				Ana: "This is very unequal treatment that we are both getting. The article that we saw was very shocking. This discrimination is so wrong and I want to bring it up with our managers, but they might not believe me."
-				<br>
-				<br>
-				Jin: "I agree. We definitely need to bring it up with someone. How about we do some more research about this and find data that supports us."
-				<br>
-				<br>
-				Ana: "Great Idea! Let's get started!"
-			</p>
+			<h2>You reluctantly push forward.</h2>
+			<div class="content">
+				<p>
+				After facing setbacks and failures, we weren’t really going to give up. We knew our vision was worth pursuing, so we decided to try again, but with a fresh approach. 
+				</p>
+				<p>
+				This time, we took a hard look at our mistakes, refined our business model, and focused on learning from the past. We were determined to make it work. Failure wasn’t an option anymore—it was a lesson we were ready to learn and grow from.
+				</p>
+			</div>
 		</>
 	)}
-
 
 	{pageNumber === 13 && (
 		<>
-			<h2>Exploring the Gender Wage Gap</h2>
-			<p>When Jin and Ana research, this is what they find:</p>
-			<img src="/images/pewdata.png" alt={`Statpage 8`} class="float-img" />
-			<p>
-				As demonstrated in the graph, growth in women’s earnings has slowed in the past 2 decades. In the past 2 decades, the wage gap hasn’t really changed. As of 2022, a woman usually earns 82 cents for every dollar that a man earns(since 2002, this number has only increased by 2 cents), even despite the fact that women today have a higher likelihood of graduating college. (Kochhar, 2023)
-				<br>
-				<br>
-				From 1982 to 2002, there was a significant amount of progress made in narrowing the wage gap. Women’s earnings increased from 65 cents for every dollar men made to 80 cents, which is a 15 cent increase. (Kochhar, 2023)
-			</p>
+			<h2>More questions...</h2>
+			<div class="quiz-calculator-container">
+				<div class="quiz-section">
+					<Quiz questions={
+						[
+							{
+								question: "If 3 million people worldwide have arm amputations, and 2.4 million out of those are from disadvantaged countries, calculate the ratio of people with amputations globally, and people from disadvantaged countries, with an arm amputation.",
+								options: ["60m:2.4m", "67m:4.2m", "2.4m:2.4m"],
+								correctAnswer: 0
+							}
+						]
+					} shortAnswerQuestions={empty} />
+				</div>
+				<div class="calculator-section">
+					<h2>Desmos Calculator</h2>
+					<p>Use this embedded Desmos calculator for your mathematical needs!</p>
+					<div class="calculator-container">
+						<iframe src="https://www.desmos.com/calculator/scientific" width="100%" height="500" style="border: 1px solid #ccc" frameborder="0"></iframe>
+					</div>
+				</div>
+			</div>
 		</>
 	)}
 
 	{pageNumber === 14 && (
 		<>
-			<h2>Practice problems - Gender Wage Gap</h2>
-			<p>When Jin and Ana research, this is what they find:</p>
-			<img src="/images/genderpractice.png" alt={`Statpage 8`} class="float-img" />
-			<p>
-				As demonstrated in the graph, growth in women’s earnings has slowed in the past 2 decades. In the past 2 decades, the wage gap hasn’t really changed. As of 2022, a woman usually earns 82 cents for every dollar that a man earns(since 2002, this number has only increased by 2 cents), even despite the fact that women today have a higher likelihood of graduating college. (Kochhar, 2023)
-				<br>
-				<br>
-				From 1982 to 2002, there was a significant amount of progress made in narrowing the wage gap. Women’s earnings increased from 65 cents for every dollar men made to 80 cents, which is a 15 cent increase. (Kochhar, 2023)
-			</p>
-			<div class="quiz-calculator-container">
-				<div class="quiz-section">
-					<Quiz questions={
-						[
-							{
-								question: "The Asian woman’s annual median salary is $70,000. The Asian man’s annual median salary is 19% higher than that of the Asian woman. What is the Asian man’s annual median salary?",
-								options: ["83,000$", "27,500$", "82,599$", "15$"],
-								correctAnswer: 0
-							},
-							{
-								question: "How much bigger is the wage gap between Asian men and women than the wage gap between Hispanic men and women?",
-								options: ["5%", "6%", "7%", "1%"],
-								correctAnswer: 1
-							},
-							{
-								question: " Find the mean wage gap percentage(excluding the percentage for all races). Is this equal to the wage gap percentage for all races",
-								options: ["19%, Yes", "19%, No", "14%, Yes", "14%, No"],
-								correctAnswer: 3
-							},
-							{
-								question: "Find the median wage gap percentage(excluding percentage for all races). Is this equal to the wage gap percentage for all races",
-								options: ["16%, Yes", "19%, No", "19%, Yes", "19%, No"],
-								correctAnswer: 3
-							},
-							{
-								question: "So is mean or median more accurate?",
-								options: ["Mean", "Median"],
-								correctAnswer: 1
-							},
-						]
-					} shortAnswerQuestions={empty} />
-				</div>
-				<div class="calculator-section">
-					<h2>Desmos Calculator</h2>
-					<p>Use this embedded Desmos calculator for your mathematical needs!</p>
-					<div class="calculator-container">
-						<iframe src="https://www.desmos.com/calculator/scientific" width="100%" height="500" style="border: 1px solid #ccc" frameborder="0"></iframe>
-					</div>
-				</div>
+			<h2>Ayla's 3D printing journey!</h2>
+			<div class="content">
+				<p>
+				A few months later, Ayla tried to create a mold with 3D printing, in hopes of improving the older prosthetic Ayla’s Silicone Stub Socket™, surprisingly fit perfectly on my stub. This freed up a lot of time for me and Ayla, as she no longer had to custom fit the prosthetics to my stub, but now to the socket, and I could easily attach and remove prosthetics quickly. These prosthetics could also be swapped between users, as now it is only a magnetic fit, and the EMG technology was fit into the stub itself. Since it takes a long time to make the sockets fit the people so they can use the prosthetics, using molds makes it a lot easier.
+				</p>
 			</div>
 		</>
 	)}
 
-
 	{pageNumber === 15 && (
 		<>
-			<h2>Exploring the Race Wage Gap</h2>
-			<p>When Jin and Ana research, this is what they find:</p>
-			<img src="/images/racedata.png" alt={`Statpage 8`} class="float-img" />
-			<p>
-				Research: Pew research,  From the graph, we see that black women earned 70% as much as White men, while Hispanic women earned only 65% as much in 2022. The ratio for White women stood at 83%, about the same as the earnings gap overall, while Asian women were closer to parity with White men, making 93% as much. The pay gap narrowed more  for White women than for Black and Hispanic women from 1982 to 2002. We also find that the wage gap for Asian women also reduced by approximately 17 percent from 2002 to 2022.  (Kochhar, 2023)
-			</p>
+			<h2>Help Ayla Code!</h2>
+			<div class="content">
+				<p>
+				Ayla's new prosthetic requires more advanced code. Edit the code if Fahad's prosthetic EMG sensor, outputs 700 at highest muscle flexion.
+
+				<CodeEditor 
+					title="Fix the Prosthetic Code"
+					description="Change the actuation point from 300 to 700"
+					initialCode={`
+#include <Servo.h>
+Servo pointer, middle, ring, pinky, thumb;
+
+
+
+
+int muscleInputAnalog = 3;
+int val = 0;
+  void setup()
+  {
+    pointer.attach(5);
+    middle.attach(6);
+    ring.attach(7);
+    pinky.attach(8);
+    thumb.attach(9);
+    Serial.begin(9600);
+  }
+  void loop()
+{
+  val = analogRead(muscleInputAnalog);
+  Serial.println(val);
+  if( val > 300)
+  {
+    thumb.write(180);
+    pointer.write(180);
+    middle.write(180);
+    ring.write(180);
+    pinky.write(180);
+   
+  }
+else{
+    thumb.write(0);
+    pointer.write(0);
+    middle.write(0);
+    ring.write(0);
+    pinky.write(0);
+    delay(100);
+  }
+  }
+
+					`}
+					expectedCode={`
+#include <Servo.h>
+Servo pointer, middle, ring, pinky, thumb;
+
+
+
+
+int muscleInputAnalog = 3;
+int val = 0;
+  void setup()
+  {
+    pointer.attach(5);
+    middle.attach(6);
+    ring.attach(7);
+    pinky.attach(8);
+    thumb.attach(9);
+    Serial.begin(9600);
+  }
+  void loop()
+{
+  val = analogRead(muscleInputAnalog);
+  Serial.println(val);
+  if( val > 700)
+  {
+    thumb.write(180);
+    pointer.write(180);
+    middle.write(180);
+    ring.write(180);
+    pinky.write(180);
+   
+  }
+else{
+    thumb.write(0);
+    pointer.write(0);
+    middle.write(0);
+    ring.write(0);
+    pinky.write(0);
+    delay(100);
+  }
+  }
+
+					`}
+					hint="Look for the value gate, and change it from 300 to 700"
+				/>
+
+				
+				</p>
+			</div>
 		</>
 	)}
 
 	{pageNumber === 16 && (
 		<>
-			<h2>Race Wage Gap problems</h2>
-			<p>When Jin and Ana research, this is what they find:</p>
-			<img src="/images/racepractice.png" alt={`Statpage 8`} class="float-img" />
-			<p>
-				1. The following section will explore the Median Absolute Deviation (MAD) for all women and all men.
-				Let’s look at the men as an example: 
-				<br>
-				<br>
-				Step 1: Identify the median salary of all men: 1,202
-				Step 2: Find the absolute value(the positive) differences between the median salary for each race and the median salary of all women identified in Step 1. 
-				<br>
-				<br>
-				Asian: |(Asian Median Salary )- (Median Salary for Men)| = |(1,635)-(1,202)| = 433
-				<br>
-				<br>
-				Hispanic: |(Hispanic Median Salary)-(Median Salary for Men)| = |(915)-(1,202)| = 287
-				<br>
-				<br>
-				Black: |( Black Median Salary) - (Median Salary for Men )| =|(970)-(1,202)|= 232
-				<br>
-				<br>
-				White: | (White Median Salary)-(Median Salary for All Women)| = |(1,352)-(1,202)| = 150
-				<br>
-				<br>
-				Step 3: Sort these 4 differences from least to most: 150, 232,  287, 433
-				<br>
-				<br>
-				Step 4: Find the median of these differences, this will be your MAD:
-				<br>
-				<br>
-				MAD =  (232+287)/2 = 259.5 
-			</p>
-			<h18>
-			Now, use this process to find the MAD for all women:
-
-			Identify the median salary of all women, and answer below: 
-			<br>
-			<br>
-			Find the absolute value(the positive) differences between the median salary for each race and the median salary of all women identified in Step 1
-			<br>
-			<br>
-			Asian: |(Asian Median Salary )- (Median Salary for Women)| = 
-			<br>
-			<br>
-			Hispanic: |(Hispanic Median Salary)-(Median Salary for Women)| = 
-			<br>
-			<br>
-			Black: |( Black Median Salary) - (Median Salary for All Women)|  =
-			<br>
-			<br>
-			White: | (White Median Salary)-(Median Salary for All Women)|  =
-			<br>
-			<br>
-			Sort these 4 differences from smallest to biggest:
-			<br>
-			<br>
-			Find the median of these differences, this will be your MAD:
-			</h18>
-			<style>
-				h18{
-					color:hotpink;
-				}
-			</style>
-			<div class="quiz-calculator-container">
-				<div class="quiz-section">
-					<Quiz questions={
-						[
-							{
-								question: "Woman's MAD",
-								options: ["3,000$", "2,500$", "2,000$", "15$"],
-								correctAnswer: 0
-							},
-							{
-								question: "Find the difference between median salary of Asian men, versus men",
-								options: ["433$", "245,000$", "123$", "532$"],
-								correctAnswer: 1
-							},
-							{
-								question: "So is the difference higher or lower than the MAD?",
-								options: ["Higher", "Lower"],
-								correctAnswer: 0
-							},
-							{
-								question: "Find the difference between median salary of Hispanic women, versus women",
-								options: ["205$", "122$", "212$", "513$"],
-								correctAnswer: 3
-							},
-							{
-								question: "So is the difference higher or lower than the MAD?",
-								options: ["Higher", "Lower"],
-								correctAnswer: 0
-							},
-						]
-					} shortAnswerQuestions={empty} />
-				</div>
-				<div class="calculator-section">
-					<h2>Desmos Calculator</h2>
-					<p>Use this embedded Desmos calculator for your mathematical needs!</p>
-					<div class="calculator-container">
-						<iframe src="https://www.desmos.com/calculator/scientific" width="100%" height="500" style="border: 1px solid #ccc" frameborder="0"></iframe>
-					</div>
-				</div>
+			<h2>The second prosthetic...</h2>
+			<div class="content">
+				<p>
+				Ayla then made the second version prosthetic, made out of carbon fiber enthralled in kevlar, and then infused with a gold-titanium alloy, as this material proved to be the most strong, after extensive testing. This prosthetic is fire resistant and can function in extreme temperatures. 
+				</p>
+				<p>
+				Because of this one of a kind design, it got a lot of traction in the market.
+				</p>
+				<p>
+				Over time, they continue to build and develop more prosthetics. Their designs were very unique and they became very famous for their new and developed prosthetics. Their goal for the company was to distribute prosthetics to people all around the world, specifically people who are amputees in war torn nations. 
+				</p>
+			</div>
+		</>
+	)}
+	{pageNumber === 17 && (
+		<>
+			<h2>Conclusion</h2>
+			<div class="content">
+				<p>
+				One day, Fahad and Ayla were in the elevator as they were leaving for a meeting. There, they met a boy named Mateo, with a prosthetic leg, who looked about 10-11 years old. He looked at Fahad and Ayla, with hope in his eyes, as he said; “Thank you so much! I can finally play soccer again!” This interaction helped them both realize how many lives they have touched with the work they did.
+				</p>
+				<p>
+				We knew we were creating more than just functional products; we were providing a lifeline, a new beginning for many who had lost so much.
+				</p>
 			</div>
 		</>
 	)}
 
-	{pageNumber === 17 && (
-		<>
-			<h2>Interview</h2>
-			<p>Here is a conversation with Latina executives and career leaders talking about unequal pay and how they handle the effects of the issue: </p>
-			<br>
-			<p><a href="https://youtu.be/RPYBLhqe07o">https://youtu.be/RPYBLhqe07o</a> (watch up to 6:34 and stop)</p>
-			<div class="quiz-section">
-				<Quiz questions={empty} 
-					shortAnswerQuestions={[
-					{
-						question: "What are 2 things you learned from watching this video",
-					}]} />
-				</div>
-		</>
-	)}
 
-	{pageNumber === 18 && (
-		<>
-			<h2>Take Action!</h2>
-			<p>
-				After reflecting on this research, Jin and Ana decide to take action.
-				<br><br>
-				Jin: “I think this is such an important issue that affects everyone, including us!” 
-				<br><br>
-				Ana: “We need to spread more awareness so we can decrease the wage gap and achieve equity and equality.”
-				<br><br>
-				Jin: “You’re right, Ana! I think we can let more people know about this issue by creating a public social media account!”
-				<br><br>
-				Ana: “ I think we should bring up this problem with our Human Resources (HR) team!”
-			</p>
-			<h3>
-				What do you think Jin and Ana should do? 
-			</h3>
-			<p><a href={`/page/19`}>Create Social Media Account</a></p>
-			<p>OR</p>
-			<p><a href={`/page/20`}>Talk to their HR (Human Resources) Team</a></p>
-		</>
-	)}
-	{pageNumber === 19 && (
-		<>
-			<h2>Create Social Media</h2>
-			<img src="/images/sm1.png" alt={`sm1`} class="float-img" />
-			<img src="/images/sm2.png" alt={`sm1`} class="float-img" />
-			<p>
-				As time went on, Jin and Ana received more popularity, and their situation gained more awareness. More people mentioned that they experienced this problem in their workplace and expressed that they wanted to take action on this issue as well. Through this, more people tried to make change in this issue, and this effort started collective bargaining among Jin and Ana’s workplace on this issue, as well as in other workplaces as well. 
-			</p>
-			<p>
-			After two years of advocating and raising awareness of the wage gap issue, Jin and Ana eventually received equal salary. 
-			</p>
-		</>
-	)}
-	{pageNumber === 20 && (
-		<>
-			<h2>Talk to HR</h2>
-			<img src="/images/hr1.png" alt={`hr1`} class="float-img" />
-			<img src="/images/hr2.png" alt={`hr1`} class="float-img" />
-			<p>
-				Through advocating against the wage gap issue and voicing their concerns to their HR manager, Jin and Ana eventually received equal salary. 
-			</p>
-		</>
-	)}
-	{pageNumber === 21 && (
-		<>
-			<h2>Conclusion</h2>
-			<p>Though Jin’s and Ana’s experiences were just a story, the wage gap issue is a problem that affects EVERYBODY. While Jin and Ana eventually received equal salary, it was only because of their persistence and willingness to bring social change. Here are ways YOU can help raise awareness about wage gap in your community:</p>
-			<li>
-				Share this website to others in your community 
-			</li>
-			<li>
-				Encourage students to research wage inequality further.
-			</li>
-			<li>
-				Have students find their own examples of wage inequality and present their findings.
-			</li>
-			<li>
-				Challenge students to think critically about the causes and effects of wage inequality.
-			</li>
-			<li>
-				Inspire students to advocate for fair pay and equal opportunities for all
-			</li>
-		</>
-	)}
-	
 	<div class="navigation">
 		{pageNumber === 1 && <a href={`/index.html`} class="nav-button prev">Home</a>}
-		{pageNumber > 1 && pageNumber != 5 && pageNumber != 6 &&<a href={`/page/${pageNumber - 1}`} class="nav-button prev">Previous Page</a>}
-		{pageNumber < 18 && pageNumber != 5 && pageNumber != 4&& pageNumber != 14 && pageNumber != 16 && pageNumber != 17 &&<a href={`/page/${pageNumber + 1}`} class="nav-button next">Next Page</a>}
+		{pageNumber > 1 && pageNumber != 6 && pageNumber != 12 && pageNumber != 7 && pageNumber != 11 &&<a href={`/page/${pageNumber - 1}`} class="nav-button prev">Previous Page</a>}
+		{pageNumber < 18 && pageNumber != 5 && pageNumber != 10 && pageNumber != 13 && pageNumber != 15 && pageNumber != 4 && pageNumber != 11 && pageNumber != 6 && pageNumber != 16 && pageNumber != 17 && pageNumber != 9&&<a href={`/page/${pageNumber + 1}`} class="nav-button next">Next Page</a>}
 		{pageNumber === 19 && <a href={`/page/21`} class="nav-button next">Next Page</a>}
-		{pageNumber === 5 && <a href={`/page/6`} class="nav-button next">See what happened if you trusted it?</a>}
-		{pageNumber === 20 && <a href={`/page/21`} class="nav-button next">Next Page</a>}
-		{pageNumber === 21 && <a href={`/about`} class="nav-button next">About us</a>}
+		{pageNumber ===  6&& <a href={`/page/7`} class="nav-button next">See what happened if you trusted it?</a>}
+		{pageNumber ===  11&& <a href={`/page/12`} class="nav-button next">See what happened if you pushed forward?</a>}
+		{pageNumber === 16 && <a href={`/page/17`} class="nav-button next">Conclusion</a>}
+		{pageNumber === 17 && <a href={`/about`} class="nav-button next">About us</a>}
 	</div>
 </Layout>
 
@@ -634,4 +541,13 @@ const shortAnswerQuestions = [
 			flex-direction: column;
 		}
 	}
+	.content a:visited {
+	background-color: rgb(255, 255, 255);
+	color: #B9D9EB
+	}
+	.a {
+	background-color: rgb(255, 255, 255);
+	color: #B9D9EB
+	}
+
 </style>

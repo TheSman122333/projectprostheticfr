@@ -1,0 +1,285 @@
+---
+import confetti from 'canvas-confetti';
+
+interface Props {
+  title: string;
+  description: string;
+  initialCode: string;
+  expectedCode: string;
+  hint?: string;
+}
+
+const { title, description, initialCode, expectedCode, hint } = Astro.props;
+---
+
+<div class="code-editor-container">
+  <div class="code-editor">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    {hint && <p class="hint"><strong>Hint:</strong> {hint}</p>}
+    
+    <div class="editor-section">
+      <label for="code-input">Edit the code below:</label>
+      <textarea 
+        id="code-input" 
+        class="code-textarea"
+        rows="10"
+        spellcheck="false"
+      >{initialCode}</textarea>
+    </div>
+    
+    <button id="check-code" class="check-button">Check Code</button>
+    <div id="code-results" class="results"></div>
+  </div>
+</div>
+
+<script>
+  import confetti from 'canvas-confetti';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const codeInput = document.getElementById('code-input') as HTMLTextAreaElement;
+    const checkButton = document.getElementById('check-code');
+    const resultsDiv = document.getElementById('code-results');
+    
+    // Get the expected code from the component props
+    const expectedCode = document.querySelector('.code-editor-container')?.getAttribute('data-expected') || '';
+    
+    if (checkButton && resultsDiv && codeInput) {
+      checkButton.addEventListener('click', () => {
+        const userCode = codeInput.value.trim();
+        const normalizedUserCode = normalizeCode(userCode);
+        const normalizedExpectedCode = normalizeCode(expectedCode);
+        
+        if (normalizedUserCode === normalizedExpectedCode) {
+          resultsDiv.innerHTML = `
+            <div class="success">
+              <h4 style="color:black">🎉 Correct!</h4>
+              <p style="color:black">Great job! Your code matches the expected solution.</p>
+              <p style="color:black>You will automatically be redirected to the next page.</p>
+            </div>
+          `;
+          
+          // Trigger confetti
+          confetti({
+            particleCount: 1250,
+            spread: 200,
+            origin: { y: 1 }
+          });
+
+          // Navigate to next page after 2 seconds
+          setTimeout(() => {
+            const currentPage = parseInt(window.location.pathname.split('/').pop() || '1');
+            const nextPage = currentPage + 1;
+            window.location.href = `/page/${nextPage}`;
+          }, 5000);
+        } else {
+          resultsDiv.innerHTML = `
+            <div class="error">
+              <h4 style="color:black">❌ Not quite right</h4>
+              <p style="color:black">Your code doesn't match the expected solution. Try again!</p>
+              <details>
+                <summary style="color:black">Show differences</summary>
+                <div class="code-comparison">
+                  <div class="your-code">
+                    <strong style="color:black">Your code:</strong>
+                    <pre style="color:black"><code style="color:black">${escapeHtml(userCode)}</code></pre>
+                  </div>
+                  <div class="expected-code">
+                    <strong style="color:black">Expected code:</strong>
+                    <pre style="color:black"><code style="color:black">${escapeHtml(expectedCode)}</code></pre>
+                  </div>
+                </div>
+              </details>
+            </div>
+          `;
+        }
+      });
+    }
+    
+    function normalizeCode(code: string): string {
+      return code
+        .replace(/\s+/g, ' ') // Replace multiple whitespace with single space
+        .replace(/;\s*}/g, '}') // Remove semicolons before closing braces
+        .replace(/\s*{\s*/g, '{') // Normalize brace spacing
+        .replace(/\s*}\s*/g, '}')
+        .trim();
+    }
+    
+    function escapeHtml(text: string): string {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  });
+</script>
+
+<style>
+  .code-editor {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid #e9ecef;
+  }
+  
+  .code-editor h3 {
+    margin-top: 0;
+    color: rgba(0, 0, 0, 0.66);
+  }
+  
+  .hint {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 4px;
+    padding: 0.75rem;
+    margin: 1rem 0;
+    color: rgba(0, 0, 0, 0.66);
+  }
+  
+  .editor-section {
+    margin: 1rem 0;
+  }
+  
+  .editor-section label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.66);
+  }
+  
+  .code-textarea {
+    width: 100%;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 1rem;
+    border: 2px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #ffffff;
+    resize: vertical;
+    min-height: 200px;
+    color: rgba(0, 0, 0, 0.66);
+  }
+  
+  .code-textarea:focus {
+    outline: none;
+    border-color: rgb(var(--accent));
+    box-shadow: 0 0 0 3px rgba(var(--accent), 0.1);
+  }
+  
+  .check-button {
+    background-color: rgb(var(--accent));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+  }
+  
+  .check-button:hover {
+    background-color: rgb(var(--accent-dark));
+  }
+  
+  .results {
+    margin-top: 1rem;
+  }
+  
+.success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 1rem;
+  border-radius: 4px;
+  color: black;
+}
+
+.success * {
+  color: black !important;
+}
+
+.error {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  border-radius: 4px;
+  color: black;
+}
+
+.error * {
+  color: black !important;
+}
+
+  .code-comparison {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .your-code, .expected-code {
+    background-color: #f8f9fa;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+  }
+  
+  .your-code *, .expected-code * {
+    color: rgba(0, 0, 0, 0.66) !important;
+  }
+  
+  .code-comparison pre {
+    margin: 0.5rem 0 0 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  .code-comparison code {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 12px;
+  }
+  
+  details {
+    margin-top: 1rem;
+  }
+  
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.5rem 0;
+    color:black
+  }
+  
+  summary:hover {
+    color:black
+  }
+  
+  @media (max-width: 768px) {
+    .code-comparison {
+      grid-template-columns: 1fr;
+    }
+    
+    .code-textarea {
+      font-size: 12px;
+    }
+  }
+
+  p {
+    margin: 0.5rem 0;
+    color: rgba(0, 0, 0, 0.66);
+  }
+  
+  h4 {
+    color: rgba(0, 0, 0, 0.66);
+  }
+</style>
+
+<script is:inline define:vars={{ expectedCode }}>
+  // Pass the expected code to the component
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.code-editor-container');
+    if (container) {
+      container.setAttribute('data-expected', expectedCode);
+    }
+  });
+</script>
